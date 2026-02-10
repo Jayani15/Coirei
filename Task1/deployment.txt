@@ -1,0 +1,62 @@
+DEPLOYMENT INSTRUCTIONS FOR TASK MANAGEMENT API
+
+===========================================
+HOW TO RUN LOCALLY
+===========================================
+
+1. Install dependencies:
+   pip install -r requirements.txt
+
+2. Run the application:
+   uvicorn app.main:app --reload
+
+3. Open browser and go to:
+   http://127.0.0.1:8000/docs
+
+
+===========================================
+HOW TO RUN WITH DOCKER
+===========================================
+
+1. Build the Docker image:
+   docker build -t task-api .
+
+2. Run the container:
+   docker run -d -p 8000:8000 --name task-container task-api
+
+3. Check if it's running:
+   docker ps
+
+4. Open browser:
+   http://localhost:8000/docs
+
+5. To stop:
+   docker stop task-container
+
+
+===========================================
+TROUBLESHOOTING
+===========================================
+
+Port already in use:
+- Change port: uvicorn app.main:app --port 8001
+
+Docker not found:
+- Install Docker Desktop
+- Restart terminal
+
+Can't access API:
+- Make sure it's running: docker ps
+- Check logs: docker logs task-container
+
+
+===========================================
+REQUIREMENTS
+===========================================
+
+- Python 3.9+
+- Docker (for containerized deployment)
+- Internet connection (ofc for installing packages)
+
+
+That's it! Your API is now deployed.
