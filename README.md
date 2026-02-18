@@ -1,207 +1,140 @@
-# 🛍 Product Management API
+# 🚀 Event-Driven Analytics & Audit API
 
-A RESTful Product Management Service built using **FastAPI**, **PostgreSQL**, **SQLAlchemy**, and **Alembic**.
+A high-throughput, event-driven backend system built with **FastAPI**, **Redis**, and **PostgreSQL**.
 
-This API allows users to create, read, update, and delete products with proper validation and pagination support.
-
----
-
-## 🚀 Tech Stack
-
-- **FastAPI** – Web framework
-- **PostgreSQL** – Database
-- **SQLAlchemy** – ORM
-- **Pydantic** – Data validation
-- **Alembic** – Database migrations
-- **Uvicorn** – ASGI server
+This system supports secure event ingestion, background processing, idempotency handling, analytics, and audit logging using a production-style architecture.
 
 ---
 
-## 📂 Project Structure
+## 📌 Features
 
-```
-fastapi-products/
-│
-├── app/
-│   ├── main.py
-│   ├── database.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── crud.py
-│   ├── deps.py
-│   └── routers/
-│       └── products.py
-│
-├── alembic/
-│   ├── versions/
-│   └── env.py
-│
-├── alembic.ini
-├── requirements.txt
-└── .env
-```
+### 🔐 API Key–Based Authentication
+- Each client has a unique API key.
+- Requests must include `X-API-Key` header.
+
+### 🚦 Rate Limiting (Per API Key)
+- Configurable per-client rate limit.
+- Prevents abuse and excessive traffic.
+
+### ⚡ Async Event Ingestion
+- Non-blocking FastAPI endpoint.
+- Returns `202 Accepted` immediately.
+- Designed for high-throughput ingestion.
+
+### 🔁 Idempotency Protection
+- Duplicate `event_id` values are ignored.
+- Prevents double processing.
+
+### 📦 Redis Queue Integration
+- Events are pushed to Redis.
+- Decouples ingestion from processing.
+
+### 🧠 Background Worker
+- Consumes events from Redis.
+- Calculates processing latency.
+- Persists enriched data into PostgreSQL.
+
+### 🗄 PostgreSQL Storage
+- Time-series–friendly schema.
+- Indexed columns for performance.
+- Bulk insert support.
+
+### 📊 Analytics APIs
+- Event count by type
+- Filter by time range
+- Group by client / event type
+
+### 📝 Audit Logging
+Logs every API call:
+- Endpoint
+- Method
+- Status code
+- Response time
+
+### ❤️ Health Check Endpoint
+- Verifies API & DB connectivity.
 
 ---
 
-## ⚙️ Setup Instructions
+# 🏗 Architecture Overview
 
-### 1️⃣ Clone the Repository
+Client
+↓
+FastAPI (Auth + Rate Limit + Idempotency)
+↓
+Redis Queue
+↓
+Background Worker
+↓
+PostgreSQL
+↓
+Analytics APIs
+
+---
+
+
+---
+
+# 🛠 Tech Stack
+
+- FastAPI
+- Redis
+- PostgreSQL
+- SQLAlchemy (Async)
+- asyncpg
+- Docker & Docker Compose
+
+---
+
+# 🚀 Setup & Run
+
+## 1️⃣ Start Infrastructure
 
 ```bash
-git clone <your-repo-url>
-cd fastapi-products
-```
+docker-compose up
 
----
+Starts:
 
-### 2️⃣ Create Virtual Environment
+PostgreSQL
+Redis
 
-```bash
-python -m venv venv
-venv\Scripts\activate   # Windows
-```
-
----
-
-### 3️⃣ Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-### 4️⃣ Setup PostgreSQL
-
-Create a database:
-
-```sql
-CREATE DATABASE products_db;
-```
-
----
-
-### 5️⃣ Configure Environment Variables
-
-Create a `.env` file:
-
-```
-DATABASE_URL=postgresql://postgres:password@localhost:5432/products_db
-```
-
----
-
-### 6️⃣ Run Migrations
-
-```bash
-alembic revision --autogenerate -m "create products table"
-alembic upgrade head
-```
-
----
-
-### 7️⃣ Start the Server
-
-```bash
+Start FastAPI
 uvicorn app.main:app --reload
-```
 
-API will run at:
+Insert Test Client
+
+Connect to Postgres:
+
+docker exec -it task6-db-1 psql -U postgres
+
+INSERT INTO clients (name, api_key, is_active)
+VALUES ('TestClient', 'test123', true);
 
 ```
-http://127.0.0.1:8000
-```
+---
 
-Swagger UI:
+## 🧠 Design Principles
 
-```
-http://127.0.0.1:8000/docs
-```
+-Event-driven architecture
+-Async ingestion
+-Queue-based decoupling
+-Idempotent event handling
+-Per-client rate limiting
+-Background processing
+-Time-series optimized storage
+-Audit trail logging
 
 ---
 
-## 📌 API Endpoints
-
-### Health Check
-```
-GET /health
-```
-
 ---
+## 🏁 Status
 
-### Create Product
-```
-POST /products/
-```
-
----
-
-### Get All Products (with pagination)
-```
-GET /products/?skip=0&limit=10
-```
-
----
-
-### Get Product by ID
-```
-GET /products/{id}
-```
-
----
-
-### Update Product
-```
-PUT /products/{id}
-```
-
----
-
-### Delete Product
-```
-DELETE /products/{id}
-```
-
----
-
-## 🔍 Validation Rules
-
-- `price` must be **greater than 0**
-- `stock` cannot be **negative**
-- `name` is **unique**
-
----
-
-## 🗄 Database Schema
-
-| Column      | Type      | Constraints          |
-|------------|----------|----------------------|
-| id         | Integer  | Primary Key          |
-| name       | String   | Unique               |
-| description| String   | Optional             |
-| price      | Float    | > 0                  |
-| stock      | Integer  | >= 0                 |
-| category   | String   | Optional             |
-| created_at | DateTime | Auto-generated       |
-
----
-
-## 📄 Features
-
-- CRUD operations
-- Pagination support
-- Input validation with Pydantic
-- Unique constraint on product name
-- Database migrations using Alembic
-- Health monitoring endpoint
-- Clean layered architecture
-
----
-
-## 🧠 Architecture Overview
-
-```
-Client → FastAPI → Pydantic → SQLAlchemy → PostgreSQL
-                           ↑
-                        Alembic
-```
+✔ Event ingestion
+✔ API key authentication
+✔ Rate limiting
+✔ Redis queue
+✔ Background worker
+✔ PostgreSQL storage
+✔ Analytics endpoints
+✔ Audit logs
+✔ Idempotency protection
