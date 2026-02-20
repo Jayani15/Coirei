@@ -24,8 +24,18 @@ async def analytics_group(db):
     query = select(
         Event.client_id,
         Event.event_type,
-        func.count()
+        func.count().label("count")
     ).group_by(Event.client_id, Event.event_type)
 
     result = await db.execute(query)
-    return result.all()
+    rows = result.all()
+
+    return [
+        {
+            "client_id": row.client_id,
+            "event_type": row.event_type,
+            "count": row.count
+        }
+        for row in rows
+    ]
+
