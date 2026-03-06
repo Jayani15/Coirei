@@ -1,0 +1,6 @@
+langchain
+langchain-groq
+langchain-core
+flake8
+bandit
+pytest
