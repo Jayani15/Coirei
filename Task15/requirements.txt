@@ -1,0 +1,7 @@
+langchain
+langchain-community
+groq
+playwright
+beautifulsoup4
+requests
+python-dotenv

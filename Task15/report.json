@@ -1,0 +1,21 @@
+{
+    "timestamp": "2026-04-07 18:35:29.585239",
+    "url": "https://practicetestautomation.com/practice-test-login/",
+    "broken_links": [
+        "https://practicetestautomation.com/practice-test-login/#main-container",
+        "https://practicetestautomation.com/",
+        "https://practicetestautomation.com/",
+        "https://practicetestautomation.com/practice/",
+        "https://practicetestautomation.com/courses/",
+        "https://practicetestautomation.com/blog/",
+        "https://practicetestautomation.com/contact/",
+        "https://practicetestautomation.com/",
+        "https://practicetestautomation.com/privacy-policy/"
+    ],
+    "button_results": [
+        "Button 0: Failed - ElementHandle.click: Timeout 3000ms exceeded.\nCall log:\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    5 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 500ms\n",
+        "Button 1: Failed - ElementHandle.click: Timeout 3000ms exceeded.\nCall log:\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    5 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 500ms\n",
+        "Button 2: Success"
+    ],
+    "screenshot": "screenshots/screenshot.png"
+}
