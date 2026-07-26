@@ -1,0 +1,8 @@
+{
+    "category": "Payment",
+    "sentiment": "Negative",
+    "urgency_level": "High",
+    "decision": "Refund",
+    "justification": "Duplicate charge for the same order without delivering the full order",
+    "priority_score": 8
+}
