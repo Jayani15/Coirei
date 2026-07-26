@@ -1,0 +1,33 @@
+{
+    "file": "uploads\\sample_code.py",
+    "vulnerabilities": [
+        {
+            "type": "Possible SQL injection vector through string-based query construction.",
+            "line": 12,
+            "severity": "High",
+            "code_snippet": "11     # \ud83d\udd34 SQL Injection vulnerability\n12     query = \"SELECT * FROM users WHERE id = \" + user_id\n13     cursor.execute(query)\n",
+            "explanation": "This issue occurs because Possible SQL injection vector through string-based query construction.. It may lead to security risks if not fixed."
+        },
+        {
+            "type": "Possible hardcoded password: 'admin123'",
+            "line": 20,
+            "severity": "Critical",
+            "code_snippet": "19     # \ud83d\udd34 Hardcoded credentials\n20     if username == \"admin\" and password == \"admin123\":\n21         return True\n",
+            "explanation": "This issue occurs because Possible hardcoded password: 'admin123'. It may lead to security risks if not fixed."
+        },
+        {
+            "type": "Starting a process with a shell, possible injection detected, security issue.",
+            "line": 29,
+            "severity": "Medium",
+            "code_snippet": "28     # \ud83d\udd34 Unsafe function (command injection)\n29     os.system(cmd)\n30 \n",
+            "explanation": "This issue occurs because Starting a process with a shell, possible injection detected, security issue.. It may lead to security risks if not fixed."
+        },
+        {
+            "type": "Use of possibly insecure function - consider using safer ast.literal_eval.",
+            "line": 36,
+            "severity": "High",
+            "code_snippet": "35     # \ud83d\udd34 Dangerous eval usage\n36     result = eval(data)\n37     print(result)\n",
+            "explanation": "This issue occurs because Use of possibly insecure function - consider using safer ast.literal_eval.. It may lead to security risks if not fixed."
+        }
+    ]
+}

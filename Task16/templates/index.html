@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scanner</title>
+</head>
+<body>
+
+<h1>Upload File</h1>
+
+<form action="/scan" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">Scan</button>
+</form>
+
+{% if report and report.vulnerabilities %}
+    <h2>Results:</h2>
+
+    {% for vuln in report.vulnerabilities %}
+        <div>
+            <p><b>Type:</b> {{ vuln.type }}</p>
+            <p><b>Line:</b> {{ vuln.line }}</p>
+            <p><b>Severity:</b> {{ vuln.severity }}</p>
+            <pre>{{ vuln.code_snippet }}</pre>
+            <p>{{ vuln.explanation }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>No vulnerabilities found 😎</p>
+{% endif %}
+
+</body>
+</html>
