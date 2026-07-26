@@ -1,0 +1,13 @@
+mcp
+python-dotenv
+
+sqlalchemy
+psycopg2-binary
+
+qdrant-client
+sentence-transformers
+
+pymupdf
+python-docx
+
+numpy

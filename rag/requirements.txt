@@ -1,0 +1,15 @@
+streamlit
+qdrant-client
+sentence-transformers
+langchain
+langchain-community
+rank-bm25
+groq
+python-dotenv
+pandas
+faster-whisper
+sounddevice
+soundfile
+scipy
+gtts
+playsound==1.2.2
