@@ -1,0 +1,13 @@
+AI Engineer
+
+We are looking for an AI Engineer with strong Python skills.
+
+Requirements:
+- Python
+- Machine Learning
+- Deep Learning
+- PyTorch
+- SQL
+- REST APIs
+
+Experience with NLP and computer vision is preferred.

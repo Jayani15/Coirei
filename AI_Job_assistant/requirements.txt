@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-dotenv
+pydantic
+requests
+openai
+python-multipart
+pymupdf
+python-docx
+chromadb
+sentence-transformers
+pytest
